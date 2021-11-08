@@ -1,6 +1,7 @@
 //PROYECTO FINAL PRODUCER- CONSUMER
 //A00227346 Lizbeth Ortiz López
 //A01275836 Eduardo Alonso Legorreta Sedano
+//A01635283 Miriam Paulina Palomera Curiel
 
 import java.util.Vector;
 import javax.swing.JOptionPane;
