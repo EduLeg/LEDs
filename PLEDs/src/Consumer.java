@@ -2,6 +2,7 @@
 //A00227346 Lizbeth Ortiz López
 //A01275836 Eduardo Alonso Legorreta Sedano
 //A01635283 Miriam Paulina Palomera Curiel
+//A01636706 Daniel Díaz López
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
