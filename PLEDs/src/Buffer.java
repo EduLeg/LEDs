@@ -59,7 +59,6 @@ public class Buffer {
         }
         Productos producto = new Productos(id, product);
         this.buffer.add(producto);
-        //jTable1.getModel().setValueAt(value, row, column);
         gui.putTabla1(id, product);
         gui.updateBar(this.buffer.size());
         notifyAll();

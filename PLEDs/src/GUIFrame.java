@@ -452,6 +452,7 @@ public class GUIFrame extends javax.swing.JFrame {
     public void updateBar(int value){
         double relation = (double)value/this.bufferTam;
         this.jProgressBar1.setValue((int)(relation*100));
+        System.out.println("El avance del Buffer es: "+(int)(relation*100));
     }
     
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
