@@ -35,7 +35,7 @@ public class Producer extends Thread {
             int b = r.nextInt(this.m-this.n+1)+this.n;
             
             String product = opScheme(a,b);
-            this.buffer.produce(product,id);
+            this.buffer.produce(product, id);
             System.out.println("Producer produced: " + product);
             
             try {
@@ -45,7 +45,6 @@ public class Producer extends Thread {
             }
         }
     }
-    
     public String opScheme(int a, int b){
         String alphabet = "+-*/";
         
@@ -55,5 +54,4 @@ public class Producer extends Thread {
         String res = "("+operador+" "+a+" "+b+" )";
         return res; 
     }
-    
 }
