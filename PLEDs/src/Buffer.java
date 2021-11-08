@@ -36,6 +36,7 @@ public class Buffer {
         
         product = new Consumidor(id,this.buffer.element().getId(), this.buffer.element().getOperacion());
         this.buffer.remove();
+        gui.updateBar(this.buffer.size());
         notifyAll();       
         return product;
     }
@@ -55,7 +56,7 @@ public class Buffer {
         this.buffer.add(producto);
         //jTable1.getModel().setValueAt(value, row, column);
         gui.putTabla1(id, product);
-        
+        gui.updateBar(this.buffer.size());
         notifyAll();
     }
 }

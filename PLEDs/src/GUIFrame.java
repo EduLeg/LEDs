@@ -29,11 +29,14 @@ public class GUIFrame extends javax.swing.JFrame {
         tableModel.addColumn("ID_Productor");
         tableModel.addColumn("Operación");
         tableModel2.addColumn("ID_Consumidor");
+        tableModel2.addColumn("ID Productor");
         tableModel2.addColumn("Operación");
         tableModel2.addColumn("Resultado");
         
         cont=0;
         cont2=0;
+        jProgressBar1.setValue(0);
+        jTextField1.setText("0");
     }
     
     @SuppressWarnings("unchecked")
@@ -351,6 +354,21 @@ public class GUIFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void iniciarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_iniciarButtonActionPerformed
+        tableModel = new DefaultTableModel();
+        tableModel2 = new DefaultTableModel();
+        jTable1.setModel(tableModel);
+        jTable2.setModel(tableModel2);      
+        tableModel.addColumn("ID_Productor");
+        tableModel.addColumn("Operación");
+        tableModel2.addColumn("ID_Consumidor");
+        tableModel2.addColumn("ID Productor");
+        tableModel2.addColumn("Operación");
+        tableModel2.addColumn("Resultado");
+        cont=0;
+        cont2=0;
+        jProgressBar1.setValue(0);
+        jTextField1.setText("0");
+        
         try{
             this.productores = Integer.parseInt(tamProductores.getValue().toString());
             this.consumidores = Integer.parseInt(tamConsumer.getValue().toString());
@@ -392,7 +410,7 @@ public class GUIFrame extends javax.swing.JFrame {
                 buffer = new Buffer(this.bufferTam, this.waitProduc, this.waitConsum,this);
                 productor = new Producer(this.buffer, this.waitProduc, this.n, this.m, this.productores);
                 productor.start();
-                consumidor = new Consumer(this.buffer, this.waitConsum, this.consumidores);
+                consumidor = new Consumer(this.buffer, this.waitConsum, consumidores,this);
                 consumidor.start();
             }
         }
@@ -413,11 +431,17 @@ public class GUIFrame extends javax.swing.JFrame {
     public void putTabla2(int idConsumer,int idProductor,String operacion, String resultado){
         this.tableModel2.addRow(row);
         jTable2.getModel().setValueAt(idConsumer, cont2, 0);
-        jTable2.getModel().setValueAt(operacion, cont2, 1);
-        jTable2.getModel().setValueAt(resultado, cont2, 2);
+        jTable2.getModel().setValueAt(idProductor, cont2, 1);
+        jTable2.getModel().setValueAt(operacion, cont2, 2);
+        jTable2.getModel().setValueAt(resultado, cont2, 3);
         cont2++;
         jTextField1.setText(""+cont2);
 
+    }
+    
+    public void updateBar(int value){
+        double relation = (double)value/this.bufferTam;
+        this.jProgressBar1.setValue((int)(relation*100));
     }
     
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed

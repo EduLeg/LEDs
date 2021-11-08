@@ -1,4 +1,3 @@
-
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -6,13 +5,13 @@ public class Consumer extends Thread {
     Buffer buffer;
     int waitConsumer;
     int tamConsumer;
-
+    GUIFrame gui;
     
-    Consumer(Buffer buffer, int waitConsumer, int tamConsumer) {
+    Consumer(Buffer buffer, int waitConsumer, int tamConsumer,GUIFrame gui) {
         this.buffer = buffer;
         this.waitConsumer = waitConsumer;
         this.tamConsumer = tamConsumer;
-        
+        this.gui=gui;
     }
     
     @Override
@@ -36,7 +35,7 @@ public class Consumer extends Thread {
             System.out.println("Consumer id: " + producto.getId_consumer());
             System.out.println("Producer id once consumed is: " + producto.getId_producer());
             System.out.println("Consumer consumed: " + product_res);
-            
+            gui.putTabla2(id_consumidor,producto.getId_producer(),producto.getOperacion(), product_res);
             try {
                 Thread.sleep(this.waitConsumer);
             } catch (InterruptedException ex) {
