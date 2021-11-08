@@ -5,9 +5,17 @@ import java.util.logging.Logger;
 
 public class Producer extends Thread {
     Buffer buffer;
+    private int waitProducer;
+    private int n,m;
+    private int tamProducer;
+    //int id;
     
-    Producer(Buffer buffer) {
+    Producer(Buffer buffer, int waitP, int n, int m, int tamProducer) {
         this.buffer = buffer;
+        this.waitProducer = waitP;
+        this.n = n;
+        this.m = m;
+        this.tamProducer = tamProducer;
     }
     
     @Override
