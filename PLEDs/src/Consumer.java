@@ -7,7 +7,6 @@ public class Consumer extends Thread {
     int waitConsumer;
     int tamConsumer;
     
-    
     Consumer(Buffer buffer, int waitConsumer, int tamConsumer) {
         this.buffer = buffer;
         this.waitConsumer = waitConsumer;
@@ -17,17 +16,26 @@ public class Consumer extends Thread {
     @Override
     public void run() {
         System.out.println("Running Consumer...");
-        char product;
+        
+        Consumidor producto;
+        int id_consumidor = 0;
+        String product_res;
         
         for(int i=0 ; i<5 ; i++) {
-            product = this.buffer.consume();
-            System.out.println("Consumer consumed: " + product);
+            
+           id_consumidor++;
+           if (id_consumidor > tamConsumer){
+               id_consumidor = 1;
+           }
+           producto = this.buffer.consume(id_consumidor);
+           product_res = resuelveOp(producto.getOperacion());
+           System.out.println("Consumer consumed: " + product_res);
                         
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException ex) {
-                Logger.getLogger(Producer.class.getName()).log(Level.SEVERE, null, ex);
-            }
+           try {
+               Thread.sleep(this.waitConsumer);
+           } catch (InterruptedException ex) {
+               Logger.getLogger(Producer.class.getName()).log(Level.SEVERE, null, ex);
+           }
         }
     }
     public String resuelveOp(String scheme){

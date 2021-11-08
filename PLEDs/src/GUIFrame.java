@@ -372,7 +372,7 @@ public class GUIFrame extends javax.swing.JFrame {
             }
 
             if (check){
-                buffer = new Buffer();
+                buffer = new Buffer(this.bufferTam, this.waitProduc, this.waitConsum);
                 productor = new Producer(this.buffer, this.waitProduc, this.n, this.m, this.productores);
                 productor.start();
                 consumidor = new Consumer(this.buffer, this.waitConsum, this.consumidores);
