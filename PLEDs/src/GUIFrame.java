@@ -1,5 +1,8 @@
 
+import java.util.Vector;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.JTable;
 
 public class GUIFrame extends javax.swing.JFrame {
     
@@ -13,10 +16,24 @@ public class GUIFrame extends javax.swing.JFrame {
     private Buffer buffer;
     private Consumer consumidor;
     private Producer productor;
+    DefaultTableModel tableModel,tableModel2;
+    Vector row;
+    private int cont,cont2;
     
     public GUIFrame() {
         initComponents();
- 
+        tableModel = new DefaultTableModel();
+        tableModel2 = new DefaultTableModel();
+        jTable1.setModel(tableModel);
+        jTable2.setModel(tableModel2);
+        tableModel.addColumn("ID_Productor");
+        tableModel.addColumn("Operación");
+        tableModel2.addColumn("ID_Consumidor");
+        tableModel2.addColumn("Operación");
+        tableModel2.addColumn("Resultado");
+        
+        cont=0;
+        cont2=0;
     }
     
     @SuppressWarnings("unchecked")
@@ -372,7 +389,7 @@ public class GUIFrame extends javax.swing.JFrame {
             }
 
             if (check){
-                buffer = new Buffer(this.bufferTam, this.waitProduc, this.waitConsum);
+                buffer = new Buffer(this.bufferTam, this.waitProduc, this.waitConsum,this);
                 productor = new Producer(this.buffer, this.waitProduc, this.n, this.m, this.productores);
                 productor.start();
                 consumidor = new Consumer(this.buffer, this.waitConsum, this.consumidores);
@@ -386,6 +403,23 @@ public class GUIFrame extends javax.swing.JFrame {
         
     }//GEN-LAST:event_iniciarButtonActionPerformed
 
+    public void putTabla1(int idProducer, String operacion){
+        this.tableModel.addRow(row);
+        jTable1.getModel().setValueAt(idProducer, cont, 0);
+        jTable1.getModel().setValueAt(operacion, cont, 1);
+        cont++;
+    }
+
+    public void putTabla2(int idConsumer,int idProductor,String operacion, String resultado){
+        this.tableModel2.addRow(row);
+        jTable2.getModel().setValueAt(idConsumer, cont2, 0);
+        jTable2.getModel().setValueAt(operacion, cont2, 1);
+        jTable2.getModel().setValueAt(resultado, cont2, 2);
+        cont2++;
+        jTextField1.setText(""+cont2);
+
+    }
+    
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed

@@ -1,8 +1,9 @@
 
-import java.util.LinkedList;
-import java.util.Queue;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class Buffer {
     
@@ -10,12 +11,14 @@ public class Buffer {
     private int waitConsumer;
     private int waitProducer;
     private int tam;
-    
-    Buffer(int tam, int waitP, int waitC) {
+    private GUIFrame gui;
+       
+    Buffer(int tam, int waitP, int waitC,GUIFrame gui) {
         this.waitConsumer = waitC;
         this.waitProducer = waitP;
         this.buffer = new LinkedList<Productos>(); 
         this.tam = tam;
+        this.gui=gui;
     }
     
     synchronized Consumidor consume(int id) {
@@ -51,9 +54,10 @@ public class Buffer {
         Productos producto = new Productos(id, product);
         this.buffer.add(producto);
         //jTable1.getModel().setValueAt(value, row, column);
+        gui.putTabla1(id, product);
+        
         notifyAll();
     }
-   
 }
 
 class Consumidor{
@@ -118,3 +122,5 @@ class Productos{
         this.operacion = operacion;
     } 
 } 
+
+
