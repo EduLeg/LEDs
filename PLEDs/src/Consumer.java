@@ -1,3 +1,7 @@
+//PROYECTO FINAL PRODUCER- CONSUMER
+//A00227346 Lizbeth Ortiz López
+//A01275836 Eduardo Alonso Legorreta Sedano
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
