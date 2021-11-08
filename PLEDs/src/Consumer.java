@@ -42,6 +42,7 @@ public class Consumer extends Thread {
             System.out.println("Producer id once consumed is: " + producto.getId_producer());
             System.out.println("Consumer consumed: " + product_res);
             gui.putTabla2(id_consumidor,producto.getId_producer(),producto.getOperacion(), product_res);
+            gui.removeTop();
             try {
                 Thread.sleep(this.waitConsumer);
             } catch (InterruptedException ex) {

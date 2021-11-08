@@ -444,6 +444,11 @@ public class GUIFrame extends javax.swing.JFrame {
 
     }
     
+    public void removeTop(){
+        tableModel.removeRow(0);
+        cont--;
+    }
+    
     public void updateBar(int value){
         double relation = (double)value/this.bufferTam;
         this.jProgressBar1.setValue((int)(relation*100));
