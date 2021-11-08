@@ -4,4 +4,4 @@
   A01636706 Daniel Díaz López <br/>
   A01635283 Miriam Paulina Palomera Curiel <br/>
   
-  https://github.com/EduLeg/LEDs/ <br/>
+  https://github.com/EduLeg/PLEDs/ <br/>
