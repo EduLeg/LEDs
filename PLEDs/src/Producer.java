@@ -21,21 +21,39 @@ public class Producer extends Thread {
     @Override
     public void run() {
         System.out.println("Running Producer...");
-        String products = "AEIOU";
         Random r = new Random(System.currentTimeMillis());
-        char product;
-        
-        for(int i=0 ; i<5 ; i++) {
-            product = products.charAt(r.nextInt(5));
+
+        int id = 0;
+        while (true) {
+            
+            id++;
+            if (id > this.tamProducer){
+                id = 1;
+            }
+
+            int a = r.nextInt(this.m-this.n+1)+this.n;
+            int b = r.nextInt(this.m-this.n+1)+this.n;
+            
+            String product = opScheme(a,b);
             this.buffer.produce(product);
             System.out.println("Producer produced: " + product);
-              
+            
             try {
-                Thread.sleep(1000);
+                Thread.sleep(this.waitProducer);
             } catch (InterruptedException ex) {
                 Logger.getLogger(Producer.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+    }
+    
+    public String opScheme(int a, int b){
+        String alphabet = "+-*/";
+        
+        Random r = new Random(System.currentTimeMillis());
+        char operador = alphabet.charAt(r.nextInt(alphabet.length()));
+        
+        String res = "("+operador+" "+a+" "+b+" )";
+        return res; 
     }
     
 }

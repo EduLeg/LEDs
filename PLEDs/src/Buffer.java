@@ -27,7 +27,7 @@ public class Buffer {
         return product;
     }
     
-    synchronized void produce(char product) {
+    synchronized void produce(String product) {
         if(this.buffer != 0) {
             try {
                 wait(1000);
@@ -35,7 +35,7 @@ public class Buffer {
                 Logger.getLogger(Buffer.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        this.buffer = product;
+        //this.buffer = product;
         
         notifyAll();
     }
