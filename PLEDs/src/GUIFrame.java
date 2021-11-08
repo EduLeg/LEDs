@@ -360,7 +360,7 @@ public class GUIFrame extends javax.swing.JFrame {
                 buffer = new Buffer();
                 productor = new Producer(buffer);
                 productor.start();
-                consumidor = new Consumer(buffer);
+                consumidor = new Consumer(this.buffer, this.waitConsum, this.consumidores);
                 consumidor.start();
             }
         }
