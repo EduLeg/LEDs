@@ -67,7 +67,7 @@ public class Consumer extends Thread {
                 try{
                     int result = num1 / num2;
                     if (num1 == 0) return "0";
-                    return String.valueOf(result);
+                    return ""+num1+"/"+num2+"";
                 }
                 catch(Exception e){
                     return "Indefinido";
